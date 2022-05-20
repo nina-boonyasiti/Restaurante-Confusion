@@ -8,7 +8,7 @@ class DishDetail extends Component {
 
     render() {
         return(
-
+            console.log('Inside Dish Details Component!!')
         );
     }
 }
