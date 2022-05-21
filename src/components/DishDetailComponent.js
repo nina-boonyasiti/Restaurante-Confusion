@@ -4,11 +4,11 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 class DishDetail extends Component {
     renderDish(chosenDish) {
         return(
-            <div className="col-12 col-md-5 mt-1">
+            <div className="col-12 col-md-5 m-1">
                 <Card>
                     <CardImg width="100%" src={chosenDish.image} alt={chosenDish.name}></CardImg>
                     <CardBody>
-                        <CardTitle header>{chosenDish.name}</CardTitle>
+                        <CardTitle>{chosenDish.name}</CardTitle>
                         <CardText>{chosenDish.description}</CardText>
                     </CardBody>
                 </Card>
@@ -18,21 +18,21 @@ class DishDetail extends Component {
 
     renderComments(comments) {
         if(comments != null) {
-            const chosenDishComments = comments.map((comments) => {
+            const chosenDishComments = comments.map((comment) => {
                 return(
-                    <li key={comments.id}>
-                        <p>{comments.comment}</p>
-                        <p>-- {comments.author}, {comments.date}</p>
+                    <li>
+                        <p>{comment?.comment}</p>
+                        <p>-- {comment.author}, {comment.date}</p>
                     </li>
                 );
             });
 
             return (
-                <div className="col-12 col-md-5 mt-1">
+                <div className='col-12 col-md-5 m-1'>
                     <h4>Comments</h4>
-                    <u1 className="list-unstyled">
+                    <ul className='list-unstyled'>
                         {chosenDishComments}
-                    </u1>
+                    </ul>
                 </div>
             );
         }
@@ -44,11 +44,12 @@ class DishDetail extends Component {
     };
 
     render() {
-        if(this.props.chosenDish != null) {
+        if(this.props.chosenDish !== null) {
+            console.log('chosendishes', this.props.chosenDish);
             return(
                 <div className="row">
                     {this.renderDish(this.props.chosenDish)}
-                    {this.renderComments(this.props.comments)}
+                    {this.renderComments(this.props.chosenDish.comments)}
                 </div>
             );
         }
