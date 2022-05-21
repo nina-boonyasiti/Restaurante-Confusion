@@ -8,7 +8,7 @@ class DishDetail extends Component {
                 <Card>
                     <CardImg width="100%" src={chosenDish.image} alt={chosenDish.name}></CardImg>
                     <CardBody>
-                        <CardTitle>{chosenDish.name}</CardTitle>
+                        <CardTitle header>{chosenDish.name}</CardTitle>
                         <CardText>{chosenDish.description}</CardText>
                     </CardBody>
                 </Card>
