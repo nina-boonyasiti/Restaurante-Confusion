@@ -16,11 +16,39 @@ class DishDetail extends Component {
         );
     }
 
+    renderComments(comments) {
+        if(comments != null) {
+            const chosenDishComments = comments.map((comments) => {
+                return(
+                    <li key={comments.id}>
+                        <p>{comments.comment}</p>
+                        <p>-- {comments.author}, {comments.date}</p>
+                    </li>
+                );
+            });
+
+            return (
+                <div className="col-12 col-md-5 mt-1">
+                    <h4>Comments</h4>
+                    <u1 className="list-unstyled">
+                        {chosenDishComments}
+                    </u1>
+                </div>
+            );
+        }
+        else {
+            return(
+                <div></div>
+            );
+        }
+    };
+
     render() {
         if(this.props.chosenDish != null) {
             return(
                 <div className="row">
                     {this.renderDish(this.props.chosenDish)}
+                    {this.renderComments(this.props.comments)}
                 </div>
             );
         }
