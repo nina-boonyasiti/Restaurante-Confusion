@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
-import AboutUs from './AboutUsComponent';
 import DishDetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import Header from './HeaderComponent';
@@ -43,7 +42,7 @@ class Main extends Component {
 
     const AboutUsPage = () => {
       return(
-        <AboutUs leaders={this.state.leaders} />
+        <About leaders={this.state.leaders} />
       );
     }
 
