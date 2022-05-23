@@ -14,7 +14,7 @@ import { PROMOTIONS } from '../shared/promotions';
 
 // NOTE: Switch is replaced by Routes and Redirect is replaced by Navigate in the latest version of react-router-dom
 import { Switch, Route, Redirect } from 'react-router-dom';
-import About from './AboutUsComponent';
+import About from './AboutComponent';
 
 class Main extends Component {
   constructor(props) {
