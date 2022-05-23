@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
+
 class DishDetail extends Component {
-    renderDish(chosenDish) {
+    renderDish(dish) {
+        {console.log(dish)}
         return(
             <div className="col-12 col-md-5 m-1">
                 <Card>
-                    <CardImg width="100%" src={chosenDish.image} alt={chosenDish.name}></CardImg>
+                    <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
                     <CardBody>
-                        <CardTitle>{chosenDish.name}</CardTitle>
-                        <CardText>{chosenDish.description}</CardText>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
             </div>
@@ -18,11 +20,11 @@ class DishDetail extends Component {
 
     renderComments(comments) {
         if(comments != null) {
-            const chosenDishComments = comments.map((comment) => {
+            const dishComments = comments.map((comment) => {
                 return(
                     <li>
                         <p>{comment?.comment}</p>
-                        <p>-- {comment.author}, {comment.date}</p>
+                        <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                     </li>
                 );
             });
@@ -31,7 +33,7 @@ class DishDetail extends Component {
                 <div className='col-12 col-md-5 m-1'>
                     <h4>Comments</h4>
                     <ul className='list-unstyled'>
-                        {chosenDishComments}
+                        {dishComments}
                     </ul>
                 </div>
             );
@@ -44,12 +46,12 @@ class DishDetail extends Component {
     };
 
     render() {
-        if(this.props.chosenDish !== null) {
-            console.log('chosendishes', this.props.chosenDish);
+        if(this.props.dish) {
+            console.log('dishes', this.props.dish);
             return(
                 <div className="row">
-                    {this.renderDish(this.props.chosenDish)}
-                    {this.renderComments(this.props.chosenDish.comments)}
+                    {this.renderDish(this.props.dish)}
+                    {this.renderComments(this.props.dish.comments)}
                 </div>
             );
         }
