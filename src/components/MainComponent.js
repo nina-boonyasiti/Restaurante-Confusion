@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
+import AboutUs from './AboutUsComponent';
 import DishDetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import Header from './HeaderComponent';
@@ -14,6 +15,7 @@ import { PROMOTIONS } from '../shared/promotions';
 
 // NOTE: Switch is replaced by Routes and Redirect is replaced by Navigate in the latest version of react-router-dom
 import { Switch, Route, Redirect } from 'react-router-dom';
+import About from './AboutUsComponent';
 
 class Main extends Component {
   constructor(props) {
@@ -39,6 +41,12 @@ class Main extends Component {
       );
     }
 
+    const AboutUsPage = () => {
+      return(
+        <AboutUs leaders={this.state.leaders} />
+      );
+    }
+
     const DishWithId = ({match}) => {
       return(
           <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
@@ -54,6 +62,7 @@ class Main extends Component {
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
               <Route exact path='/contactus' component={Contact} /> 
+              <Route exact path='/aboutus' component={AboutUsPage} /> 
               <Redirect to="/home" />
           </Switch>
         <Footer />
