@@ -75,7 +75,7 @@ class CommentForm extends Component{
                                 <Col md={12}>
 
                                     {/* TASK 3.1-3.2: AUTHORS VALIDATION - FIELD > 3 CHARS && <= 15 CHARS */}
-                                    <Control.text model=".text" id="author" name="author" placeholder="First Name" className="form-control" validators={{required, minLength: minLength(3), maxLength: maxLength(15)}} />
+                                    <Control.text model=".author" id="author" name="author" placeholder="First Name" className="form-control" validators={{required, minLength: minLength(3), maxLength: maxLength(15)}} />
                                     
                                     {/* TASK 3.3: SHOWS INVALID MESSAGE DISPLAYED AT THE BOTTOM OF THE FIELD */}
                                     <Errors className="text-danger" model=".author" show="touched" messages={{required: 'Required ', minLength: 'Must be greater than 2 characters', maxLength: 'Must be 15 characters for less'}} />
@@ -86,7 +86,7 @@ class CommentForm extends Component{
                             <Row className="form-group">
                                 <Label htmlFor="comment" md={12}>Comment</Label>
                                 <Col md={12}>
-                                    <Control.text model=".textarea" id="comment" name="comment" placeholder="Comment Here" className="form-control" rows = "6" validators={{required}} />
+                                    <Control.textarea model=".comment" id="comment" name="comment" placeholder="Comment Here" className="form-control" rows = "6" validators={{required}} />
 
                                     {/* TASK 3.3: SHOWS INVALID MESSAGE DISPLAYED AT THE BOTTOM OF THE FIELD */}
                                     <Errors className="text-danger" model=".author" show="touched" messages={{required: 'Required '}} />
