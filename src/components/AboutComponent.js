@@ -35,6 +35,7 @@ import { baseUrl } from '../shared/baseUrl';
         }
         else {
             return (
+                /* Task 3.1: stagger in leader info animation */
                 <Stagger in>
                     {leaders.map(leader => (
                         <Fade in key={leader.id}>
