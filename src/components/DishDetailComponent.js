@@ -30,7 +30,7 @@ class CommentForm extends Component{
     handleCommentForm(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     //TASK 1.2: TOGGLE MODAL
@@ -127,7 +127,7 @@ class CommentForm extends Component{
         );
     }
 
-    function RenderComments({comments, addComment, dishId}) {
+    function RenderComments({comments, postComment, dishId}) {
         if(comments != null) {
             const dishComments = comments.map((comment) => {
                 return(
@@ -145,7 +145,7 @@ class CommentForm extends Component{
                         {dishComments}
                     </ul>
                     {/* TASK 1.3: COMMENTFORM COMPONENT IS USED BY RENDERCOMMENTS */}
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
             );
         }
@@ -195,7 +195,7 @@ class CommentForm extends Component{
                 <div className="row">
                     <RenderDish dish={props.dish} />
                     <RenderComments comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id}
                     />
                 </div>
