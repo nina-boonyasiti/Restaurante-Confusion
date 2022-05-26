@@ -184,3 +184,44 @@ export const fetchLeaders = () => (dispatch) => {
     .then(leaders => dispatch(addLeaders(leaders)))
     .catch(error => dispatch(leadersFailed(error.message)));
 }
+
+// Task 2.1 implementing postFeedback() - check on http://localhost:3001/feedback
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
+
+  const feedback = {
+    firstname: firstname,
+    lastname: lastname,
+    telnum: telnum,
+    email: email,
+    agree: agree,
+    contactType: contactType,
+    message: message
+  }
+  feedback.date = new Date().toISOString();
+
+  return fetch(baseUrl + 'feedback', {
+    method: 'POST',
+    body: JSON.stringify(feedback),
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'same-origin'
+  })
+
+  .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+            var errmess = new Error(error.message);
+            throw errmess;
+      })
+
+    .then(response => response.json())
+    .then(response => alert(JSON.stringify(response)))
+    .catch(error => alert('error in posting comment' + (error.message)));
+
+}

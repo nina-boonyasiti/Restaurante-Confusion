@@ -10,7 +10,7 @@ import Footer from './FooterComponent';
 // NOTE: Switch is replaced by Routes and Redirect is replaced by Navigate in the latest version of react-router-dom
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postFeedback } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -22,7 +22,11 @@ const mapDispatchToProps = dispatch => ({
   fetchPromos: () => dispatch(fetchPromos()),
 
   //Task 1.4: update to fetch leader info
-  fetchLeaders: () => dispatch(fetchLeaders())
+  fetchLeaders: () => dispatch(fetchLeaders()),
+
+  //Task 2.2: update to fetch post info & make it available to contact component
+  postFeedback: (firstname, lastname, telnum, email, agree, contactType, message) => dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message))
+
 });
 
 const mapStateToProps = state => {
@@ -105,7 +109,9 @@ class Main extends Component {
                   <Route exact path='/aboutus' component={AboutUs} />
                   <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
                   <Route path='/menu/:dishId' component={DishWithId} />
-                  <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+
+                  {/* Task 2.2: update to fetch/send post info to server */}
+                  <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/>} />
                   <Redirect to="/home" />
               </Switch>
             </CSSTransition>
